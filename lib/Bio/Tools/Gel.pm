@@ -1,4 +1,4 @@
-# 
+#
 # BioPerl module for Bio::Tools::Gel
 # Copyright Allen Day <allenday@ucla.edu>
 # You may distribute this module under the same terms as perl itself
@@ -41,12 +41,12 @@ This takes a set of sequences or Bio::Seq objects, and calculates their
 respective migration distances using:
     distance = dilation * (4 - log10(length(dna));
 
-Source: Molecular Cloning, a Laboratory Manual. Sambrook, Fritsch, Maniatis. 
+Source: Molecular Cloning, a Laboratory Manual. Sambrook, Fritsch, Maniatis.
 CSHL Press, 1989.
 
 Bio::Tools::Gel currently calculates migration distances based solely on
-the length of the nucleotide sequence.  Secondary or tertiary structure, 
-curvature, and other biophysical attributes of a sequence are currently 
+the length of the nucleotide sequence.  Secondary or tertiary structure,
+curvature, and other biophysical attributes of a sequence are currently
 not considered.  Polypeptide migration is currently not supported.
 
 =head1 FEEDBACK
@@ -60,15 +60,15 @@ the Bioperl mailing list.  Your participation is much appreciated.
   bioperl-l@bioperl.org                  - General discussion
   http://bioperl.org/wiki/Mailing_lists  - About the mailing lists
 
-=head2 Support 
+=head2 Support
 
 Please direct usage questions or support issues to the mailing list:
 
 I<bioperl-l@bioperl.org>
 
-rather than to the module maintainer directly. Many experienced and 
-reponsive experts will be able look at the problem and quickly 
-address it. Please include a thorough description of the problem 
+rather than to the module maintainer directly. Many experienced and
+reponsive experts will be able look at the problem and quickly
+address it. Please include a thorough description of the problem
 with code and data examples if at all possible.
 
 =head2 Reporting Bugs
@@ -92,6 +92,7 @@ Internal methods are usually preceded with a _
 
 
 package Bio::Tools::Gel;
+
 use strict;
 
 use Bio::PrimarySeq;
@@ -104,7 +105,7 @@ use base qw(Bio::Root::Root);
  Usage   : my $gel = Bio::Tools::Gel->new(-seq => $sequence,-dilate => 3);
  Function: Initializes a new Gel
  Returns : Bio::Tools::Gel
- Args    : -seq      => Bio::Seq(s), scalar(s) or list of either/both 
+ Args    : -seq      => Bio::Seq(s), scalar(s) or list of either/both
                         (default: none)
            -dilate   => Expand band migration distances (default: 1)
 
@@ -122,7 +123,7 @@ sub new {
         $self->add_band($seqs);
     }
     $self->dilate($dilate || 1);
-  
+
     return $self;
 }
 
@@ -132,7 +133,7 @@ sub new {
  Title   : add_band
  Usage   : $gel->add_band($seq);
  Function: Calls _add_band with a (possibly created) Bio::Seq object.
- Returns : 
+ Returns :
  Args    : Bio::Seq, scalar sequence, or list of either/both.
 
 =cut
@@ -166,13 +167,13 @@ sub add_band {
  Title   : _add_band
  Usage   : $gel->_add_band($seq);
  Function: Adds a new band to the gel.
- Returns : 
+ Returns :
  Args    : Bio::Seq object
 
 =cut
 
 sub _add_band {
-    my ($self, $arg) = @_;  
+    my ($self, $arg) = @_;
     if ( defined $arg) {
         push (@{$self->{'bands'}},$arg);
     }
@@ -185,7 +186,7 @@ sub _add_band {
  Title   : dilate
  Usage   : $gel->dilate(1);
  Function: Sets/retrieves the dilation factor.
- Returns : dilation factor 
+ Returns : dilation factor
  Args    : Float or none
 
 =cut
@@ -216,7 +217,7 @@ sub migrate {
  Usage   : $gel->bands;
  Function: Calculates migration distances of sequences.
  Returns : hash of (seq_id => distance)
- Args    : 
+ Args    :
 
 =cut
 
